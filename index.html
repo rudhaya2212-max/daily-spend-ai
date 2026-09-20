@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Daily Spend AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <span class="logo-icon">₹</span>
+            Daily Spend <span>AI</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#budget">Budget</a>
+            <a href="#expenses">Expenses</a>
+            <a href="#advisor">AI Advisor</a>
+        </div>
+
+        <button class="nav-btn" onclick="scrollToBudget()">
+            Start Budgeting
+        </button>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ AI-POWERED PERSONAL BUDGET
+            </div>
+
+            <h1>
+                Spend Smart.<br>
+                <span>Save Better.</span>
+            </h1>
+
+            <p>
+                Know what you can safely spend today
+                while protecting your monthly savings goal.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="scrollToBudget()">
+                    Start Budgeting →
+                </button>
+
+                <button class="secondary-btn" onclick="scrollToAdvisor()">
+                    Ask AI 🤖
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hero Budget Card -->
+
+        <div class="hero-card">
+
+            <div class="card-top">
+
+                <span>Today's Limit</span>
+
+                <span class="ai-status">
+                    ● AI Active
+                </span>
+
+            </div>
+
+            <div class="hero-amount">
+                ₹<span id="heroDailyLimit">233</span>
+            </div>
+
+            <div class="progress-container">
+
+                <div
+                    class="progress-bar"
+                    id="heroProgress">
+                </div>
+
+            </div>
+
+            <div class="hero-card-bottom">
+
+                <span>₹113 remaining</span>
+
+                <span>Today</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section class="section" id="dashboard">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="small-title">YOUR OVERVIEW</p>
+                <h2>Monthly Budget</h2>
+            </div>
+
+            <span class="date">
+                September 2026
+            </span>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <!-- Salary -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon salary-icon">
+                    ₹
+                </div>
+
+                <p>Monthly Salary</p>
+
+                <h3>
+                    ₹<span id="displaySalary">15,000</span>
+                </h3>
+
+                <small>
+                    Your monthly income
+                </small>
+
+            </div>
+
+
+            <!-- Savings -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon savings-icon">
+                    🎯
+                </div>
+
+                <p>Savings Goal</p>
+
+                <h3>
+                    ₹<span id="displaySavings">3,000</span>
+                </h3>
+
+                <small>
+                    Monthly target
+                </small>
+
+            </div>
+
+
+            <!-- Available -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon available-icon">
+                    💰
+                </div>
+
+                <p>Available Budget</p>
+
+                <h3>
+                    ₹<span id="displayAvailable">7,000</span>
+                </h3>
+
+                <small>
+                    After savings & expenses
+                </small>
+
+            </div>
+
+
+            <!-- Daily Limit -->
+
+            <div class="stat-card featured-card">
+
+                <div class="stat-icon daily-icon">
+                    📅
+                </div>
+
+                <p>Today's Limit</p>
+
+                <h3>
+                    ₹<span id="displayDaily">233</span>
+                </h3>
+
+                <small>
+                    Safe spending limit
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= BUDGET INPUT ================= -->
+
+    <section class="section budget-section" id="budget">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="small-title">SET YOUR PLAN</p>
+                <h2>Build Your Budget</h2>
+            </div>
+
+        </div>
+
+
+        <div class="budget-container">
+
+            <div class="budget-form">
+
+                <div class="form-group">
+
+                    <label>
+                        Monthly Salary
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="salary"
+                            value="15000"
+                            placeholder="Enter salary"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Savings Goal
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="savings"
+                            value="3000"
+                            placeholder="Enter savings"
+                        >
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Monthly Expenses
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="monthlyExpenses"
+                            value="5000"
+                            placeholder="Enter expenses"
+                        >
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="calculate-btn"
+                    onclick="calculateBudget()"
+                >
+                    Calculate My Budget
+                </button>
+
+            </div>
+
+
+            <!-- Budget Result -->
+
+            <div class="budget-result">
+
+                <div class="result-label">
+                    AVAILABLE TO SPEND
+                </div>
+
+                <div class="big-result">
+                    ₹<span id="resultAvailable">7,000</span>
+                </div>
+
+                <div class="result-divider"></div>
+
+                <div class="daily-result">
+
+                    <div>
+                        <span>Today's safe limit</span>
+
+                        <strong>
+                            ₹<span id="resultDaily">233</span>
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Per week</span>
+
+                        <strong>
+                            ₹<span id="resultWeekly">1,631</span>
+                        </strong>
+                    </div>
+
+                </div>
+
+                <p class="result-note">
+                    ✦ Your budget is calculated based on
+                    your income, savings goal and expenses.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= EXPENSE TRACKER ================= -->
+
+    <section class="section" id="expenses">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="small-title">TRACK DAILY</p>
+                <h2>Today's Expenses</h2>
+            </div>
+
+            <div class="remaining-box">
+                Remaining:
+                <strong>
+                    ₹<span id="remainingAmount">233</span>
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="expense-layout">
+
+
+            <!-- Add Expense -->
+
+            <div class="expense-form card-box">
+
+                <h3>Add Expense</h3>
+
+                <p>
+                    Track every small expense to stay within
+                    your daily budget.
+                </p>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Expense Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expenseName"
+                        placeholder="Eg: Food, Travel"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Amount
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span>₹</span>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            placeholder="Enter amount"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="expenseCategory">
+
+                        <option value="Food">
+                            🍔 Food
+                        </option>
+
+                        <option value="Travel">
+                            🚌 Travel
+                        </option>
+
+                        <option value="Shopping">
+                            🛍️ Shopping
+                        </option>
+
+                        <option value="Bills">
+                            📄 Bills
+                        </option>
+
+                        <option value="Other">
+                            📦 Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    class="calculate-btn"
+                    onclick="addExpense()"
+                >
+                    + Add Expense
+                </button>
+
+            </div>
+
+
+            <!-- Expense List -->
+
+            <div class="expense-list card-box">
+
+                <div class="list-header">
+
+                    <h3>Today's Activity</h3>
+
+                    <span id="expenseCount">
+                        0 expenses
+                    </span>
+
+                </div>
+
+
+                <div id="expenseItems">
+
+                    <div class="empty-state">
+
+                        <div>💳</div>
+
+                        <p>
+                            No expenses added yet.
+                        </p>
+
+                        <small>
+                            Add your first expense.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= AI ADVISOR ================= -->
+
+    <section
+        class="section advisor-section"
+        id="advisor"
+    >
+
+        <div class="ai-main-card">
+
+            <div class="ai-header">
+
+                <div class="ai-circle">
+                    🤖
+                </div>
+
+                <div>
+
+                    <p class="small-title">
+                        YOUR PERSONAL AI
+                    </p>
+
+                    <h2>
+                        Ask Daily Spend AI
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <p class="ai-description">
+
+                Get personalized spending guidance based
+                on your current budget and today's expenses.
+
+            </p>
+
+
+            <!-- Quick Questions -->
+
+            <div class="quick-questions">
+
+                <button onclick="quickQuestion(500)">
+                    Can I spend ₹500 today?
+                </button>
+
+                <button onclick="quickQuestion(100)">
+                    Can I spend ₹100?
+                </button>
+
+                <button onclick="quickQuestion(300)">
+                    Is ₹300 safe?
+                </button>
+
+            </div>
+
+
+            <!-- Ask Box -->
+
+            <div class="ask-box">
+
+                <input
+                    type="number"
+                    id="aiAmount"
+                    placeholder="Enter amount you want to spend"
+                >
+
+                <button onclick="askAI()">
+                    Ask AI 🤖
+                </button>
+
+            </div>
+
+
+            <!-- AI Answer -->
+
+            <div
+                class="ai-answer"
+                id="aiAnswer"
+            >
+
+                <div class="answer-icon">
+                    🤖
+                </div>
+
+                <div>
+
+                    <strong>
+                        Daily Spend AI
+                    </strong>
+
+                    <p id="answerText">
+                        Your AI advice will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            ₹ Daily Spend AI
+        </div>
+
+        <p>
+            Spend Smart • Track Daily • Protect Savings
+        </p>
+
+        <small>
+            AI-powered personal daily budget manager
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
